@@ -1,6 +1,4 @@
-# 最简测试代码：只验证streamlit-option-menu是否能导入并显示
 import streamlit as st
-# 导入侧边栏菜单库（这行之前报错，现在测试）
 from streamlit_option_menu import option_menu
 
 # 主标题
