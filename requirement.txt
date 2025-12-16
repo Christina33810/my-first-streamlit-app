@@ -1,6 +1,5 @@
-# 核心库：指定Streamlit版本（选一个稳定版本，避免兼容性问题）
-streamlit>=1.30.0
-# 侧边栏菜单库：指定版本，避免最新版本出问题
-streamlit-option-menu>=0.3.6
-pandas  # 处理表格数据
-numpy  # 处理数值计算
+streamlit
+pandas
+numpy
+matplotlib
+streamlit_option_menu
