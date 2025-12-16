@@ -1,19 +1,24 @@
+# 最简测试代码：只验证streamlit-option-menu是否能导入并显示
 import streamlit as st
+# 导入侧边栏菜单库（这行之前报错，现在测试）
 from streamlit_option_menu import option_menu
 
-# 侧边栏菜单（对应课件的Option Menu）
+# 主标题
+st.title("测试侧边栏菜单")
+
+# 侧边栏菜单核心代码
 with st.sidebar:
     selected = option_menu(
-        menu_title="主菜单",  # 菜单标题
-        options=["首页", "关于我们", "联系我们"],  # 菜单选项
-        icons=["house", "info-circle", "envelope"],  # 图标（课件里的Bootstrap图标）
-        default_index=0  # 默认选中第一个
+        menu_title="主菜单",  # 菜单标题（可以留空，写""）
+        options=["首页", "关于", "联系"],  # 菜单选项
+        icons=["house", "info-circle", "envelope"],  # 图标（用Bootstrap图标，不用也可以）
+        default_index=0,  # 默认选中第一个选项
     )
 
-# 根据选中的菜单显示内容
+# 根据选中的选项显示内容
 if selected == "首页":
-    st.title("欢迎来到首页")
-elif selected == "关于我们":
-    st.title("关于我们")
+    st.write("你选中了【首页】")
+elif selected == "关于":
+    st.write("你选中了【关于】")
 else:
-    st.title("联系我们")
+    st.write("你选中了【联系】")
