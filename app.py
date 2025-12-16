@@ -1,33 +1,42 @@
-# 1. 导入Streamlit库
 import streamlit as st
+from streamlit_option_menu import option_menu
 
-# 2. 显示仪表盘大标题（对应课件的“Retail Business Dashboard”）
-st.title("零售业务仪表盘")
+st.title("布局设计演示")
 
-# 3. 显示经理输入区的小标题（对应课件的“Manager Input Section”）
-st.header("经理输入区域")
-st.write("请输入月度销售目标并选择地区")
+# 1. 分3列显示（对应课件的Columns Layout）
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.header("第一列")
+    st.write("1月销售额：10万")
+with col2:
+    st.header("第二列")
+    st.write("2月销售额：15万")
+with col3:
+    st.header("第三列")
+    st.write("3月销售额：12万")
 
-# 4. 数字输入框：输入月度销售目标（对应课件的“Numeric Input”）
-sales_target = st.number_input(
-    "输入月度销售目标（美元）：",  # 输入框提示文字
-    min_value=0,  # 最小只能输0
-    value=50000   # 默认值50000美元
-)
+# 2. 标签页显示（对应课件的Tabs Layout）
+tab1, tab2, tab3 = st.tabs(["销售数据", "客户反馈", "市场趋势"])
+with tab1:
+    st.write("销售数据：总销售额37万")
+with tab2:
+    st.write("客户反馈：好评率95%")
+with tab3:
+    st.write("市场趋势：需求增长")
 
-# 5. 下拉菜单：选择地区（对应课件的“Dropdown List”）
-region = st.selectbox(
-    "选择地区：",  # 下拉菜单提示文字
-    ["北部", "南部", "东部", "西部"]  # 下拉选项
-)
+# 侧边栏菜单（对应课件的Option Menu）
+with st.sidebar:
+    selected = option_menu(
+        menu_title="主菜单",  # 菜单标题
+        options=["首页", "关于我们", "联系我们"],  # 菜单选项
+        icons=["house", "info-circle", "envelope"],  # 图标（课件里的Bootstrap图标）
+        default_index=0  # 默认选中第一个
+    )
 
-# 6. 提交按钮：点击后显示结果（对应课件的“Submit Button”）
-if st.button("提交"):
-    # 显示成功提示（绿色文字，对应课件的“Success Message”）
-    st.success("仪表盘已更新！")
-    # 显示用户输入的信息（对应课件的“Display Entered Values”）
-    st.write(f"月度销售目标：{sales_target}美元")
-    st.write(f"选择的地区：{region}")
-    # 额外逻辑：如果目标大于100000美元，显示鼓励文字（课件拓展要求）
-    if sales_target > 100000:
-        st.write("太棒了！你设定了一个有挑战的目标！")
+# 根据选中的菜单显示内容
+if selected == "首页":
+    st.title("欢迎来到首页")
+elif selected == "关于我们":
+    st.title("关于我们")
+else:
+    st.title("联系我们")
